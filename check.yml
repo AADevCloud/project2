@@ -1,10 +1,12 @@
 ---
-- hosts: local
+- hosts: all
   gather_facts: no
   become: yes
+  remote_user: root
   tasks:
-  - name: Stop and remove the running container
+
+  - name: Stop the running container
     docker_container:
       name: web
-      state: stopped
       image: web1:v1
+      state: stopped
