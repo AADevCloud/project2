@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: Stop and remove the running container
+    docker_container:
+      name: web
+      state: absent
