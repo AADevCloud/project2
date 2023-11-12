@@ -5,8 +5,10 @@
   remote_user: root
   tasks:
 
+  - name: Get a list of running containers
+    shell: docker ps -q | wc -l
+    register: running_containers
+
   - name: Stop the running container
-    docker_container:
-      name: web
-      image: web1:v1
-      state: stopped
+    shell: docker kill web
+    when: running_containers.stdout == "1"
