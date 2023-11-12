@@ -1,9 +1,10 @@
 ---
-- hosts: localhost
+- hosts: local
   gather_facts: no
   become: yes
   tasks:
   - name: Stop and remove the running container
-    command: sudo docker stop and rm my_container
-    become_pass: "{{ lookup('file', 'vault_pass') }}"
-
+    docker_container:
+      name: web
+      state: stopped
+      image: web1:v1
