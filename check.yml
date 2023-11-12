@@ -4,6 +4,6 @@
   become: yes
   tasks:
   - name: Stop and remove the running container
-    docker_container:
-      name: web
-      state: absent
+    command: sudo docker stop and rm my_container
+    become_pass: "{{ lookup('file', 'vault_pass') }}"
+
